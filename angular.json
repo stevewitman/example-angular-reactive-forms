@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ex-reactive-forms"
+    }
+  },
+  "defaultProject": "ex-reactive-forms",
+  "cli": {
+    "analytics": false
+  }
 }
