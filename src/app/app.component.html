@@ -1,1 +1,43 @@
 <h1>Example App: Angular Reactive Forms</h1>
+
+<h2>Animal Shelter Volunteer Form</h2>
+<form [formGroup]="volunteerFrom" (ngSubmit)="onSubmit()">
+  <h3>Personal Information</h3>
+  <label>
+    First Name:
+    <input type="text" formControlName="name" placeholder="required" />
+  </label>
+  <label>
+    Phone Number:
+    <input type="text" formControlName="phoneNumber" placeholder="required" />
+  </label>
+  <label>Select Preferred Location:</label>
+  <select formControlName="preferredLocation" (change)="selectLocation($event)">
+    <option *ngFor="let loc of locations" [ngValue]="loc">{{ loc }}</option>
+  </select>
+  <h2>Please select what animals you're comfortable working with, if any:</h2>
+  <div formGroupName="animals" class="grouping">
+    <label
+      >Dogs
+      <input formControlName="dogs" type="checkbox" />
+    </label>
+    <label
+      >Cats
+      <input formControlName="cats" type="checkbox" />
+    </label>
+    <label
+      >Reptiles
+      <input formControlName="reptiles" type="checkbox" />
+    </label>
+  </div>
+  <h3>Reference(s)</h3>
+  <div formArrayName="references" *ngFor="let ref of references.controls; let i=index" class="grouping">
+    <label>
+      Reference Email:
+      <input [formControlName]="i" type="text" placeholder="optional" />
+      <button type="button" (click)="removeEmail(i)" id="remove_email">X</button>
+    </label>
+  </div>
+  <button type="button" (click)="addEmail()">Add Another Reference</button>
+  <button id="apply_button">Apply</button>
+</form>
